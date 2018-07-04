@@ -1,27 +1,25 @@
-@media (min-width: 360px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .info {
-        
-    }
+.info {
+    
+}
 
-    .budget {
-        
-    }
-    
-    .optional {
-        
-    }
-    
-    .submit {
-        padding: 10px;
-    }
+.budget {
 
 }
+
+.optional {
+
+}
+
+.submit {
+    
+}
+
 
 body {
     background-color: rgb(255, 245, 157);
@@ -29,11 +27,13 @@ body {
     height: 100%;
 }
 
+hr {margin-left:0;margin-right:0}
+
 input {
     border-radius: 5px;
     font-size: 1em;
     padding: 5px;
-    outline: none;
+    outline: 2px blue;
 }
 
 label {
@@ -54,7 +54,7 @@ footer {
 }
 
 h2 {
-    margin-bottom: 0px;
+    margin-bottom: 2px;
 }
 
 
@@ -89,8 +89,19 @@ h2 {
     text-align: center;
 }
 
+.optional > #discount {
+    display: block;
+    margin: 0 auto;
+
+}
+
+.submit {
+    padding: 10px;
+}
+
 .submit > button {
     background-color: rgb(46, 125, 50);
+    
     color: rgb(245,245,245);
     padding: 5px;
     border-radius: 5px;
