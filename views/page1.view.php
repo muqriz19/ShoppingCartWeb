@@ -31,9 +31,9 @@
             <h2>Optional</h2>
             <hr>
             <label>Name of Shop</label>
-            <input type="text" name="shop-name" placeholder="Shop 1">
+            <input type="text" name="shop-name" placeholder="Shop 1" id="shop-name" value="Shop 1">
             <label for="">Address of Shop</label>
-            <input type="text" name="location-name" placeholder="Shop Street" >
+            <input type="text" name="location-name" placeholder="Shop Street" id="location-name" value="Shop Street" >
         </div>
         <div class="submit">
             <button type="button" onclick="checkBudget()">Confirm</button>
