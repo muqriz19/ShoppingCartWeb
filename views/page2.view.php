@@ -58,8 +58,9 @@
 
             </div>
             
-            <div class="submit">
-                <button>Submit</button>
+            <div class="btn">
+                <button>+</button>
+                <button class="submit">Submit</button>
             </div>
 
 
