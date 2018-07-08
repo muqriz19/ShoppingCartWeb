@@ -40,14 +40,14 @@
 
         <div class="inputItem">
         
-            <div class="title">
-                <label for="">Title</label>
+            <div class="name">
+                <label for="">Name</label>
                 <input type="text">
             </div>
 
             <div class="price">
                 <label for="">Price</label>
-                <input type="text">
+                <input type="number">
             </div>
 
             <div class="quantity">
