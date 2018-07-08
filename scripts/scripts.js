@@ -46,10 +46,6 @@ function checkBudget() {
                
         window.location.href = "page2.php";
 
-
     }
 
-    
-
 }
-
