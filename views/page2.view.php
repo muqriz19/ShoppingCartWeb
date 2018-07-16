@@ -18,17 +18,17 @@
 
             <div class="budget item">
                 <h2>Budget</h2>
-                <label for="">0</label>
+                <span id="budgetMessage">0</span>
             </div>
 
             <div class="current item">
                 <h2>Current</h2>
-                <label for="">0</label>
+                <span id="currentMessage">0</span>
             </div>
 
             <div class="discount item">
                 <h2>Discount</h2>
-                <label for="">0%</label>
+                <span id="discountMessage">0</span>
             </div>
 
 
@@ -38,28 +38,32 @@
             <h3>...</h3>
         </div>
 
+        <div class="list">
+            <span>  List<img src="" alt="" > </span>
+        </div>
+
         <div class="inputItem">
         
             <div class="name">
                 <label for="">Name</label>
-                <input type="text">
+                <input type="text" id="nameInput" placeholder="Product">
             </div>
 
             <div class="price">
                 <label for="">Price</label>
-                <input type="number">
+                <input type="number" id="priceInput" value="0" placeholder="0" >
             </div>
 
             <div class="quantity">
                 <label for="">Quantity</label>
-                <input type="number">
-                <span class="updownbtn">&uarr;</span>
-                <span class="updownbtn">&darr;</span>
+                <input type="number" id="quantityInput" placeholder="1" value="1" min="1">
+                <span id="up-btn">&uarr;</span>
+                <span id="down-btn">&darr;</span>
 
             </div>
             
             <div class="btn">
-                <button>+</button>
+                <button id="addBTN">+</button>
                 <button class="submit">Submit</button>
             </div>
 

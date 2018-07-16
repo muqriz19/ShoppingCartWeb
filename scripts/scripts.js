@@ -1,9 +1,25 @@
+var count = 0;
+
+var quantityCounter = 1;
+
+var idCode = 0;
+
 var shoppingInfo = {
     budget: 0,
     discount: 0,
     nameOfShop: "Shop 1",
     shopAddress: "Shop Street"
 }
+
+
+var product = {
+    id: "#" + 0,
+    name: "Product",
+    price: 0,
+    quantity: 0
+}
+
+var shoppingList = [];
 
 
 
@@ -49,3 +65,80 @@ function checkBudget() {
     }
 
 }
+
+// function test() {
+//     console.log(document.location.pathname);
+    
+// }
+
+document.getElementById('addBTN').addEventListener('click', function() {
+    
+    var nameofProduct = document.getElementById('nameInput').value;
+    var priceofProduct = document.getElementById('priceInput').value;
+    var quantityofProduct = document.getElementById('quantityInput').value;
+
+    // console.log(nameofProduct);
+    // console.log(priceofProduct);
+    // console.log(quantityofProduct);
+
+    if(nameofProduct !== 0 || priceofProduct !== 0) {
+
+        count += 1;
+        nameofProduct = "Product " + count;
+        priceofProduct = parseInt(document.getElementById('priceInput').value);
+        quantityofProduct = parseInt(document.getElementById('quantityInput').value);
+        idCode++;
+
+        shoppingList.push
+        (
+            {
+                id: "#" + idCode,
+                name: nameofProduct,
+                price: priceofProduct,
+                quantity: quantityofProduct
+            }
+        )
+
+        console.log(shoppingList);
+    }
+
+
+});
+
+document.getElementById('up-btn').addEventListener('click', function() {
+    
+        quantityCounter += 1;
+        document.getElementById('quantityInput').value = quantityCounter;
+
+});
+
+
+document.getElementById('down-btn').addEventListener('click', function() {
+    
+    if(quantityCounter != 0) {
+        quantityCounter -= 1;
+        document.getElementById('quantityInput').value = quantityCounter;
+    }
+    
+    
+});
+
+function updateDisplay() {
+
+    if(document.location.pathname === "/page2.php")
+    {
+
+        var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
+
+        document.getElementById('budgetMessage').innerHTML = shopInfo.budget;
+        document.getElementById('currentMessage').innerHTML = 0;
+        document.getElementById('discountMessage').innerHTML = shopInfo.discount;
+
+    }
+
+    
+}
+
+updateDisplay();
+
+
