@@ -96,8 +96,6 @@ document.getElementById('addBTN').addEventListener('click', function() {
     // console.log(priceofProduct);
     // console.log(quantityofProduct);
 
-    if(nameofProduct !== 0 || priceofProduct !== 0) {
-
         if(!(currentMoney > budgetMoney)) {
             count += 1;
             
@@ -120,7 +118,7 @@ document.getElementById('addBTN').addEventListener('click', function() {
             currentMoney += priceofProduct * quantityofProduct;
             messageDOM.innerHTML = "Added " + nameofProduct + ".";
 
-            console.log(messageDOM);
+            console.log(currentMoney);
             
             updateDisplay();
             
@@ -137,11 +135,6 @@ document.getElementById('addBTN').addEventListener('click', function() {
 
             alert('Exceed Budget');
         }
-    
-            
-
-
-    }
 
 
 });

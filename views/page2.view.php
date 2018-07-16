@@ -31,7 +31,6 @@
                 <span id="discountMessage">0</span>
             </div>
 
-
         </div>
 
         <div class="message messagecontainer">
@@ -39,7 +38,7 @@
         </div>
 
         <div class="list">
-            <span>  List<img src="" alt="" > </span>
+            <span id="listArea">List<img src="" alt="" > </span>
         </div>
 
         <div class="inputItem">
