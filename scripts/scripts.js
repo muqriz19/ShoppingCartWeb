@@ -1,8 +1,14 @@
+var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
+
 var count = 0;
 
 var quantityCounter = 1;
 
 var idCode = 0;
+
+var budgetMoney = shopInfo.budget;
+
+var currentMoney = 0;
 
 var shoppingInfo = {
     budget: 0,
@@ -16,8 +22,11 @@ var product = {
     id: "#" + 0,
     name: "Product",
     price: 0,
-    quantity: 0
+    quantity: 0,
+    total: 0
 }
+
+var messageDOM = document.getElementById('messageArea');
 
 var shoppingList = [];
 
@@ -74,6 +83,12 @@ function checkBudget() {
 document.getElementById('addBTN').addEventListener('click', function() {
     
     var nameofProduct = document.getElementById('nameInput').value;
+    
+    if(nameofProduct === "")
+    {
+        nameofProduct = "Product " + count;
+    }
+    
     var priceofProduct = document.getElementById('priceInput').value;
     var quantityofProduct = document.getElementById('quantityInput').value;
 
@@ -83,23 +98,49 @@ document.getElementById('addBTN').addEventListener('click', function() {
 
     if(nameofProduct !== 0 || priceofProduct !== 0) {
 
-        count += 1;
-        nameofProduct = "Product " + count;
-        priceofProduct = parseInt(document.getElementById('priceInput').value);
-        quantityofProduct = parseInt(document.getElementById('quantityInput').value);
-        idCode++;
+        if(!(currentMoney > budgetMoney)) {
+            count += 1;
+            
+            priceofProduct = parseInt(document.getElementById('priceInput').value);
+            quantityofProduct = parseInt(document.getElementById('quantityInput').value);
+            idCode++;
 
-        shoppingList.push
-        (
-            {
-                id: "#" + idCode,
-                name: nameofProduct,
-                price: priceofProduct,
-                quantity: quantityofProduct
-            }
-        )
 
-        console.log(shoppingList);
+            shoppingList.push
+            (
+                {
+                    id: "#" + idCode,
+                    name: nameofProduct,
+                    price: priceofProduct,
+                    quantity: quantityofProduct,
+                    total: priceofProduct * quantityofProduct
+                }
+            )
+
+            currentMoney += priceofProduct * quantityofProduct;
+            messageDOM.innerHTML = "Added " + nameofProduct + ".";
+
+            console.log(messageDOM);
+            
+            updateDisplay();
+            
+            setInterval(function() {
+                messageDOM.innerHTML = "...";
+
+            }, 4000);
+
+
+    
+            console.log(shoppingList); 
+
+        } else {
+
+            alert('Exceed Budget');
+        }
+    
+            
+
+
     }
 
 
@@ -123,22 +164,14 @@ document.getElementById('down-btn').addEventListener('click', function() {
     
 });
 
+
 function updateDisplay() {
-
-    if(document.location.pathname === "/page2.php")
-    {
-
-        var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
-
-        document.getElementById('budgetMessage').innerHTML = shopInfo.budget;
-        document.getElementById('currentMessage').innerHTML = 0;
-        document.getElementById('discountMessage').innerHTML = shopInfo.discount;
-
-    }
-
+    
+    document.getElementById('budgetMessage').innerHTML = budgetMoney;
+    document.getElementById('currentMessage').innerHTML = currentMoney;
+    document.getElementById('discountMessage').innerHTML = shopInfo.discount;
     
 }
-
 updateDisplay();
 
 

@@ -34,8 +34,8 @@
 
         </div>
 
-        <div class="message">
-            <h3>...</h3>
+        <div class="message messagecontainer">
+            <h3 id="messageArea">...</h3>
         </div>
 
         <div class="list">
@@ -57,8 +57,8 @@
             <div class="quantity">
                 <label for="">Quantity</label>
                 <input type="number" id="quantityInput" placeholder="1" value="1" min="1">
-                <span id="up-btn">&uarr;</span>
-                <span id="down-btn">&darr;</span>
+                <span id="up-btn" class="updownbtn">&uarr;</span>
+                <span id="down-btn" class="updownbtn">&darr;</span>
 
             </div>
             
