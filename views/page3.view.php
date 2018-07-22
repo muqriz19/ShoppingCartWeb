@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Page 2</title>
+    <title>Page 3</title>
 </head>
 <body>
     <div id="logo">
@@ -37,36 +37,12 @@
             <h3 id="messageArea">...</h3>
         </div>
 
-        <div class="list">
-            <h4 id="listArea">List<img src="" alt="" > </h4>
+        <div class="productadd">
+            <h4 id="productaddlabel" >Add Products<img src="" alt="" > </h4>
         </div>
 
         <div class="inputItem">
         
-            <div class="name">
-                <label for="">Name</label>
-                <input type="text" id="nameInput" placeholder="Product">
-            </div>
-
-            <div class="price">
-                <label for="">Price</label>
-                <input type="number" id="priceInput" value="0" placeholder="0" >
-            </div>
-
-            <div class="quantity">
-                <label for="">Quantity</label>
-                <input type="number" id="quantityInput" placeholder="1" value="1" min="1">
-                <span id="up-btn" class="updownbtn">&uarr;</span>
-                <span id="down-btn" class="updownbtn">&darr;</span>
-
-            </div>
-            
-            <div class="btn">
-                <button id="addBTN">+</button>
-                <button class="submit">Submit</button>
-            </div>
-
-
         </div>
     
     </div>

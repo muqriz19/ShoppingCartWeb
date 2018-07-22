@@ -1,5 +1,15 @@
 var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
 
+var addBTNel = document.getElementById('addBTN');
+
+var upBTNel = document.getElementById('up-btn');
+
+var downBTNel = document.getElementById('down-btn');
+
+var listAreael = document.getElementById('listArea');
+
+var productaddlabel = document.getElementById('productaddlabel');
+
 var count = 0;
 
 var quantityCounter = 1;
@@ -29,6 +39,7 @@ var product = {
 var messageDOM = document.getElementById('messageArea');
 
 var shoppingList = [];
+
 
 
 
@@ -80,9 +91,9 @@ function checkBudget() {
     
 // }
 
-document.getElementById('addBTN').addEventListener('click', function() {
-    
-    var nameofProduct = document.getElementById('nameInput').value;
+if(addBTNel) {
+    addBTNel.addEventListener('click', function() {
+        var nameofProduct = document.getElementById('nameInput').value;
     
     if(nameofProduct === "")
     {
@@ -97,8 +108,7 @@ document.getElementById('addBTN').addEventListener('click', function() {
     // console.log(quantityofProduct);
 
         if(!(currentMoney > budgetMoney)) {
-            count += 1;
-            
+                        
             priceofProduct = parseInt(document.getElementById('priceInput').value);
             quantityofProduct = parseInt(document.getElementById('quantityInput').value);
             idCode++;
@@ -117,6 +127,7 @@ document.getElementById('addBTN').addEventListener('click', function() {
 
             currentMoney += priceofProduct * quantityofProduct;
             messageDOM.innerHTML = "Added " + nameofProduct + ".";
+            count += 1;
 
             console.log(currentMoney);
             
@@ -127,44 +138,88 @@ document.getElementById('addBTN').addEventListener('click', function() {
 
             }, 4000);
 
-
-    
             console.log(shoppingList); 
 
         } else {
 
             alert('Exceed Budget');
         }
+    });
 
+}
 
-});
-
-document.getElementById('up-btn').addEventListener('click', function() {
+if(upBTNel) {
+    upBTNel.addEventListener('click', function() {
     
         quantityCounter += 1;
         document.getElementById('quantityInput').value = quantityCounter;
 
-});
+    });
+}
+
+if(downBTNel){
+    downBTNel.addEventListener('click', function() {
+    
+        if(quantityCounter != 0) {
+            quantityCounter -= 1;
+            document.getElementById('quantityInput').value = quantityCounter;
+    
+        }
+        
+        
+    });
+}
+
+// document.getElementById('productaddlabel').addEventListener('click', function() {
+//     window.location.href = 'page2.php'
+// });
+
+if(listAreael){
+    listAreael.addEventListener('click', function() {
+    
+        for(var i = 0; i < shoppingList.length; i++) {
+            
+            window.localStorage.setItem('listofitems', JSON.stringify({shoppingList}));
+            
+            showList();
+        }
+        
+        window.location.href = 'page3.php';
+
+    });
+}
 
 
-document.getElementById('down-btn').addEventListener('click', function() {
-    
-    if(quantityCounter != 0) {
-        quantityCounter -= 1;
-        document.getElementById('quantityInput').value = quantityCounter;
-    }
-    
-    
-});
+if (productaddlabel) {
+    productaddlabel.addEventListener('click', function() {
+        window.location.href = 'page2.php';
+    });
+}
 
 
 function updateDisplay() {
+
+
+    if(window.location.pathname === '/page2.php' || window.location.pathname === '/page3.php') {
+        document.getElementById('budgetMessage').innerHTML = budgetMoney;
+        document.getElementById('currentMessage').innerHTML = currentMoney;
+        document.getElementById('discountMessage').innerHTML = shopInfo.discount;
+        console.log('Hello');
+        
+    }
+    else{
+        console.log('Test');
+    }
     
-    document.getElementById('budgetMessage').innerHTML = budgetMoney;
-    document.getElementById('currentMessage').innerHTML = currentMoney;
-    document.getElementById('discountMessage').innerHTML = shopInfo.discount;
     
 }
+
+
+function showList() {
+    var allItems = [];
+     allItems = JSON.parse(window.localStorage.getItem('listofitems'));
+
+     console.log("allItems", allItems);
+}
+
 updateDisplay();
-
-
