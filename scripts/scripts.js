@@ -43,7 +43,7 @@ var currentBudget = {
     }
 };
 
-var shoppingList = [];  
+//var shoppingList = [];  
 
 function checkBudget() {
 
@@ -203,7 +203,7 @@ function showList() {
         for(var iCount = 0; iCount < allItems.length; iCount++) {
             var item = document.createElement('li');
             
-            item.innerText = allItems[iCount].name + " " + allItems[iCount].price + " " + allItems[iCount].quantity;
+            item.innerText = allItems[iCount].name + " " + "RM" + allItems[iCount].price + " " + "Qty" + allItems[iCount].quantity;
     
             list.appendChild(item);
             

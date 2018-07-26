@@ -163,12 +163,13 @@ h2 {
 }
 
 #productItem {
-    overflow: scroll;
+    overflow-y: auto;
+    height: 300px;
 }
 
-.items > li {
-    margin: 10px;
-    color: blue;
+
+.items {
+    
 }
 
 .footer-notes {
