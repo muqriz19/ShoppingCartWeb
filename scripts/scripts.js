@@ -43,7 +43,7 @@ var currentBudget = {
     }
 };
 
-//var shoppingList = [];  
+var shoppingList = [];  
 
 function checkBudget() {
 
@@ -237,7 +237,7 @@ if (productaddlabel) {
 
 function updateDisplay() {
 
-    if(window.location.pathname === '/page2.php' || window.location.pathname === '/page3.php') {
+
         var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
         var currentBudget = JSON.parse(window.localStorage.getItem('currentMoney'));
 
@@ -248,13 +248,6 @@ function updateDisplay() {
         document.getElementById('budgetMessage').innerHTML = shopInfo.budget;
         document.getElementById('currentMessage').innerHTML =  currentBudget === null ? 0: currentBudget;
         document.getElementById('discountMessage').innerHTML = shopInfo.discount;
-        
-        
-    } else {
-        console.log('Did not work');
-        
-        
-    }
     
     
 }
@@ -265,7 +258,18 @@ if(window.location.pathname == '/page1.php') {;
     
 }
 
-if(window.location.pathname == '/page2.php' || window.location.pathname == '/page3.php') {;
+if(window.location.pathname == '/page2.php' || window.location.pathname == '/page3.php' || window.location.pathname == '/page4.php') {;
     updateDisplay();
     
+}
+
+if(window.location.pathname == '/page4.php') {;
+    showList();
+    
+}
+
+
+function checkout() {
+    window.location.href = 'page4.php';
+
 }

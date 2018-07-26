@@ -63,7 +63,7 @@
             
             <div class="btn">
                 <button id="addBTN">+</button>
-                <button class="submit">Submit</button>
+                <button class="submit" onclick="checkout()">Submit</button>
             </div>
 
 
