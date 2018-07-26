@@ -1,5 +1,3 @@
-var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
-
 var addBTNel = document.getElementById('addBTN');
 
 var upBTNel = document.getElementById('up-btn');
@@ -16,32 +14,36 @@ var quantityCounter = 1;
 
 var idCode = 0;
 
-var budgetMoney = shopInfo.budget;
-
-var currentMoney = 0;
-
-var shoppingInfo = {
-    budget: 0,
-    discount: 0,
-    nameOfShop: "Shop 1",
-    shopAddress: "Shop Street"
-}
-
-
-var product = {
+/* var product = {
     id: "#" + 0,
     name: "Product",
     price: 0,
     quantity: 0,
     total: 0
+}; */
+
+
+
+function getObject(object) {
+
+    return object;
 }
 
-var messageDOM = document.getElementById('messageArea');
+function getArray(array) {
 
-var shoppingList = [];
+    return array;
+}
 
+var currentBudget = {
+    money: 0,
 
+    getCurrentMoney: function () {
+        
+        return this.money;
+    }
+};
 
+var shoppingList = [];  
 
 function checkBudget() {
 
@@ -71,12 +73,23 @@ function checkBudget() {
         and parse into integer
 
         */
+
+       var shoppingInfo = {
+        budget: 0,
+        discount: 0,
+        nameOfShop: "Shop 1",
+        shopAddress: "Shop Street"
+        };
        
         shoppingInfo.budget = parseInt(budget);
 
         shoppingInfo.discount = parseInt(discount);
         shoppingInfo.nameOfShop = nameOfShop;
         shoppingInfo.shopAddress = addressOfShop;
+
+        //currentBudget.money = parseInt(budget);
+        //window.localStorage.setItem("currentMoney", budget);
+
 
         window.localStorage.setItem("shoppingInfo", JSON.stringify(shoppingInfo));
                
@@ -86,34 +99,35 @@ function checkBudget() {
 
 }
 
-// function test() {
-//     console.log(document.location.pathname);
-    
-// }
 
+// when user clicks + (add) button
 if(addBTNel) {
     addBTNel.addEventListener('click', function() {
         var nameofProduct = document.getElementById('nameInput').value;
     
-    if(nameofProduct === "")
-    {
-        nameofProduct = "Product " + count;
-    }
-    
-    var priceofProduct = document.getElementById('priceInput').value;
-    var quantityofProduct = document.getElementById('quantityInput').value;
+        if(nameofProduct === "") {
+            nameofProduct = "Product " + count;
+        }
+        
+        var priceofProduct = document.getElementById('priceInput').value;
+        var quantityofProduct = document.getElementById('quantityInput').value;
 
-    // console.log(nameofProduct);
-    // console.log(priceofProduct);
-    // console.log(quantityofProduct);
+        var shoppingInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
 
-        if(!(currentMoney > budgetMoney)) {
-                        
+        var currentMoney = window.localStorage.getItem('currentMoney');
+
+        //console.log(currentBudget.getCurrentMoney());
+        
+
+        if(currentMoney < shoppingInfo.budget) {
+
+            
+
+            var messageDOM = document.getElementById('messageArea');
             priceofProduct = parseInt(document.getElementById('priceInput').value);
             quantityofProduct = parseInt(document.getElementById('quantityInput').value);
-            idCode++;
 
-
+            idCode++;   
             shoppingList.push
             (
                 {
@@ -123,25 +137,26 @@ if(addBTNel) {
                     quantity: quantityofProduct,
                     total: priceofProduct * quantityofProduct
                 }
-            )
-
-            currentMoney += priceofProduct * quantityofProduct;
+            )   
+            currentBudget.money += priceofProduct * quantityofProduct;
             messageDOM.innerHTML = "Added " + nameofProduct + ".";
             count += 1;
 
-            console.log(currentMoney);
-            
+            window.localStorage.setItem("currentMoney", currentBudget.money);
+
+            window.localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+
             updateDisplay();
-            
+
             setInterval(function() {
-                messageDOM.innerHTML = "...";
+                messageDOM.innerHTML = "...";   
+            }, 4000);   
 
-            }, 4000);
+            console.log(shoppingList);  
 
-            console.log(shoppingList); 
 
-        } else {
 
+        } else {    
             alert('Exceed Budget');
         }
     });
@@ -163,32 +178,53 @@ if(downBTNel){
         if(quantityCounter != 0) {
             quantityCounter -= 1;
             document.getElementById('quantityInput').value = quantityCounter;
-    
         }
         
         
     });
 }
 
-// document.getElementById('productaddlabel').addEventListener('click', function() {
-//     window.location.href = 'page2.php'
-// });
+
+function showList() {
+    var allItems = [];
+    
+    //object has array inside called shoppinglist
+    allItems = JSON.parse(window.localStorage.getItem('shoppingList'));
+    
+    console.log(allItems);    
+    
+    var list = document.getElementById('productItem');
+
+    var item = document.createElement('li');
+
+    item.classList.add('items');
+
+    if(allItems) {
+        for(var iCount = 0; iCount < allItems.length; iCount++) {
+            var item = document.createElement('li');
+            
+            item.innerText = allItems[iCount].name + " " + allItems[iCount].price + " " + allItems[iCount].quantity;
+    
+            list.appendChild(item);
+            
+        }
+    }
+}
 
 if(listAreael){
     listAreael.addEventListener('click', function() {
-    
-        for(var i = 0; i < shoppingList.length; i++) {
-            
-            window.localStorage.setItem('listofitems', JSON.stringify({shoppingList}));
-            
-            showList();
-        }
         
         window.location.href = 'page3.php';
+
+        
+        updateDisplay();
 
     });
 }
 
+if(window.location.pathname === '/page3.php') {
+    showList();
+}
 
 if (productaddlabel) {
     productaddlabel.addEventListener('click', function() {
@@ -197,29 +233,39 @@ if (productaddlabel) {
 }
 
 
+
+
 function updateDisplay() {
 
-
     if(window.location.pathname === '/page2.php' || window.location.pathname === '/page3.php') {
-        document.getElementById('budgetMessage').innerHTML = budgetMoney;
-        document.getElementById('currentMessage').innerHTML = currentMoney;
+        var shopInfo = JSON.parse(window.localStorage.getItem('shoppingInfo'));
+        var currentBudget = JSON.parse(window.localStorage.getItem('currentMoney'));
+
+
+
+        //console.log(shopInfo);
+
+        document.getElementById('budgetMessage').innerHTML = shopInfo.budget;
+        document.getElementById('currentMessage').innerHTML =  currentBudget === null ? 0: currentBudget;
         document.getElementById('discountMessage').innerHTML = shopInfo.discount;
-        console.log('Hello');
+        
+        
+    } else {
+        console.log('Did not work');
+        
         
     }
-    else{
-        console.log('Test');
-    }
     
     
 }
 
 
-function showList() {
-    var allItems = [];
-     allItems = JSON.parse(window.localStorage.getItem('listofitems'));
-
-     console.log("allItems", allItems);
+if(window.location.pathname == '/page1.php') {;
+    window.localStorage.clear();
+    
 }
 
-updateDisplay();
+if(window.location.pathname == '/page2.php' || window.location.pathname == '/page3.php') {;
+    updateDisplay();
+    
+}

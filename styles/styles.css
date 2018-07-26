@@ -138,6 +138,39 @@ h2 {
 
 }
 
+.shoppinglistitems > ul > li {
+    list-style: none;
+    font-size: 20px;
+    padding: 5px;
+    margin: 2px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.shoppinglistitems > ul > li:hover {
+    background-color: rgb(254, 124, 0);
+    color: black;
+}
+
+.close {
+    float: right;
+    margin-left: 50px;
+}
+
+.close:hover {
+    color: red;
+    background-color: black;
+}
+
+#productItem {
+    overflow: scroll;
+}
+
+.items > li {
+    margin: 10px;
+    color: blue;
+}
+
 .footer-notes {
     display: block;
     position: relative;

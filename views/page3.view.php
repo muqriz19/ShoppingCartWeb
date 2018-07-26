@@ -41,8 +41,9 @@
             <h4 id="productaddlabel" >Add Products<img src="" alt="" > </h4>
         </div>
 
-        <div class="inputItem">
-        
+        <div class="shoppinglistitems">
+            <ul id= "productItem">
+            </ul>
         </div>
     
     </div>
